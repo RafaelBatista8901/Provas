@@ -11,11 +11,11 @@ private const val NOME_BADE_DADOS = "Provas.db"
 class BDProvas(
     context: Context?,
 ) : SQLiteOpenHelper(context, "Provas.db", null, 1) {
-    override fun onCreate(p0: SQLiteDatabase?) {
+    override fun onCreate(db: SQLiteDatabase?) {
 
     }
 
-    override fun onUpgrade(p0: SQLiteDatabase?, OldVersion: Int, p2: Int) {
+    override fun onUpgrade(db: SQLiteDatabase?, OldVersion: Int, p2: Int) {
 
     }
 }

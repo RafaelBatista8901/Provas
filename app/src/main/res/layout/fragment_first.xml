@@ -13,7 +13,7 @@
 
         <Button
             android:id="@+id/button_Sobre"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:text="@string/sobre"
@@ -23,7 +23,7 @@
 
         <Button
             android:id="@+id/button_Pesquisar"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:text="@string/pesquisar"
@@ -33,7 +33,7 @@
 
         <Button
             android:id="@+id/button_Provas"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:text="@string/provas"
@@ -43,7 +43,7 @@
 
         <Button
             android:id="@+id/button_Percursos"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="32dp"
