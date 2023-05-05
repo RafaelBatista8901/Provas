@@ -3,6 +3,7 @@ package pt.ipg.provas
 import android.content.ContentValues
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
+import android.provider.BaseColumns
 
 abstract class TabelaBD (val db: SQLiteDatabase, val nome: String){
     abstract fun cria()
@@ -24,5 +25,9 @@ abstract class TabelaBD (val db: SQLiteDatabase, val nome: String){
 
     fun elimina(where: String, argWhere: Array<String>) =
         db.delete(nome, where, argWhere)
+
+    companion object{
+        const val CHAVE_TABELA = "${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT"
+    }
 }
 
