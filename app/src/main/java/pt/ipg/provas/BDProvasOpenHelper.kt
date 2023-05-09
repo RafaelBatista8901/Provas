@@ -1,15 +1,10 @@
-package layout
+package pt.ipg.provas
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import pt.ipg.provas.TabelaBD
-import pt.ipg.provas.TabelaPercursos
-import pt.ipg.provas.TabelaProvas
 
 private const val VERSAO_BADE_DADOS = 1
-
-private const val NOME_BADE_DADOS = "Provas.db"
 
 class BDProvasOpenHelper(
     context: Context?,
@@ -22,5 +17,9 @@ class BDProvasOpenHelper(
 
     override fun onUpgrade(db: SQLiteDatabase?, OldVersion: Int, p2: Int) {
 
+    }
+
+    companion object {
+        const val NOME_BADE_DADOS = "Provas.db"
     }
 }
