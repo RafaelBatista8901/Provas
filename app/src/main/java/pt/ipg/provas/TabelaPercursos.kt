@@ -1,6 +1,7 @@
 package pt.ipg.provas
 
 import android.database.sqlite.SQLiteDatabase
+import android.provider.BaseColumns
 
 class TabelaPercursos(db: SQLiteDatabase) : TabelaBD(db, NOME_TABELA) {
     override fun cria() {
@@ -8,8 +9,11 @@ class TabelaPercursos(db: SQLiteDatabase) : TabelaBD(db, NOME_TABELA) {
     }
 
     companion object {
-        const val NOME_TABELA = "categorias"
+        const val NOME_TABELA = "percursos"
         const val CAMPO_NOME = "nome"
-        const val CAMPO_DISTANCIA = "nome"
+        const val CAMPO_DISTANCIA = "distancia"
+
+        val CAMPOS = arrayOf(BaseColumns._ID, CAMPO_NOME, CAMPO_DISTANCIA)
+
     }
 }

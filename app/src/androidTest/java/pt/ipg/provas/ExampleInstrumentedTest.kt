@@ -1,6 +1,8 @@
 package pt.ipg.provas
 
 import android.content.Context
+import android.database.sqlite.SQLiteDatabase
+import android.provider.BaseColumns
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
 
@@ -9,6 +11,7 @@ import org.junit.runner.RunWith
 
 import org.junit.Assert.*
 import org.junit.Before
+import java.lang.NullPointerException
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -34,12 +37,76 @@ class ExampleInstrumentedTest {
     }
     @Test
     fun ConsegueInserirPercursos(){
+        val bd = getWritableDatabase()
+
+        val percurso = Percurso("Trail Curto", 10)
+        inserePercursos(bd, percurso)
+    }
+
+    private fun inserePercursos(bd: SQLiteDatabase, percurso: Percurso) {
+        percurso.id = TabelaPercursos(bd).insere(percurso.toContentValues())
+        assertNotEquals(-1, percurso.id)
+    }
+
+    @Test
+    fun ConsegueInserirProvas(){
+        val bd = getWritableDatabase()
+
+        val percurso = Percurso("Trail Longo", 40)
+        inserePercursos(bd, percurso)
+
+        val prova1 = Provas("24H Mem Martins", "Mem Martins", "BTT", "14/05/2023", percurso.id)
+        insereProva(bd, prova1)
+
+        val prova2 = Provas("VI Trail Trilhos do Ceireiro", "Beselga", "Trail", "14/05/2023", percurso.id)
+        insereProva(bd, prova2)
+    }
+
+    @Test
+    fun consegueLerPercurso() {
+        val bd = getWritableDatabase()
+
+        val percurso1 = Percurso("Maratona", 50)
+        inserePercursos(bd, percurso1)
+
+        val percurso2 = Percurso("Meia_Maratona", 25)
+        inserePercursos(bd, percurso2)
+
+        val tabelaPercursos = TabelaPercursos(bd)
+
+        val cursor = tabelaPercursos.consulta(
+            TabelaPercursos.CAMPOS, "${BaseColumns._ID}=?", arrayOf(percurso1.id.toString()),
+            null,
+            null,
+            null
+        )
+
+        assert(cursor.moveToNext())
+        val percursoBD = Percurso.fromCursor(cursor)
+
+        assertEquals(percurso1, percursoBD)
+
+        val cursorTodosPercursos = tabelaPercursos.consulta(
+            TabelaPercursos.CAMPOS,
+            null,
+            null,
+            null,
+            null,
+            TabelaPercursos.CAMPO_NOME
+        )
+
+        assert(cursorTodosPercursos.count > 1)
+    }
+
+
+    private fun insereProva(bd: SQLiteDatabase, provas: Provas) {
+        provas.id = TabelaProvas(bd).insere(provas.toContentValues())
+        assertNotEquals(-1, provas.id)
+    }
+
+    private fun getWritableDatabase(): SQLiteDatabase {
         val openHelper = BDProvasOpenHelper(getAppContext())
         val bd = openHelper.writableDatabase
-
-        val percurso = Percurso("Trail Curto", 25,)
-
-        val id = TabelaPercursos(bd).insere(percurso.toContentValues())
-        assertNotEquals(-1, id)
+        return bd
     }
 }
