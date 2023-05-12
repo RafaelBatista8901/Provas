@@ -5,10 +5,15 @@ import android.provider.BaseColumns
 
 class TabelaProvas(db: SQLiteDatabase) : TabelaBD(db, NOME_TABELA) {
     override fun cria() {
-        db.execSQL("CREATE TABLE $NOME_TABELA ($CHAVE_TABELA, nome TEXT NOT NULL, localidade TEXT NOT NULL, tipo TEXT NOT NULL, data DATE NOT NULL, id_Percursos INTEGER NOT NULL, FOREIGN KEY (id_Percursos) REFERENCES ${TabelaPercursos.NOME_TABELA}(${BaseColumns._ID}) ON DELETE RESTRICT)")
+        db.execSQL("CREATE TABLE $NOME_TABELA ($CHAVE_TABELA, $CAMPO_NOME TEXT NOT NULL, $CAMPO_LOCALIDADE TEXT NOT NULL, $CAMPO_TIPO TEXT NOT NULL, $CAMPO_DATA TEXT NOT NULL, $CAMPO_FK_PERCURSOS INTEGER NOT NULL, FOREIGN KEY ($CAMPO_FK_PERCURSOS) REFERENCES ${TabelaPercursos.NOME_TABELA}(${BaseColumns._ID}) ON DELETE RESTRICT)")
     }
 
     companion object {
         const val NOME_TABELA = "Provas"
+        const val CAMPO_NOME = "nome"
+        const val CAMPO_LOCALIDADE = "localidade"
+        const val CAMPO_TIPO = "tipo"
+        const val CAMPO_DATA = "data"
+        const val CAMPO_FK_PERCURSOS = "id_Percursos"
     }
 }

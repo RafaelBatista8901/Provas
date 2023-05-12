@@ -11,7 +11,7 @@ data class Percurso(
         val valores = ContentValues()
 
         valores.put(TabelaPercursos.CAMPO_NOME, nome)
-        valores.put("distancia", distancia)
+        valores.put(TabelaPercursos.CAMPO_DISTANCIA, distancia)
 
         return valores
     }

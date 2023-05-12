@@ -39,6 +39,7 @@ class ExampleInstrumentedTest {
 
         val percurso = Percurso("Trail Curto", 25,)
 
-        TabelaPercursos(bd).insere()
+        val id = TabelaPercursos(bd).insere(percurso.toContentValues())
+        assertNotEquals(-1, id)
     }
 }
