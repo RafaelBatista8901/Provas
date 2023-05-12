@@ -32,4 +32,13 @@ class ExampleInstrumentedTest {
         val bd = openHelper.readableDatabase
         assert(bd.isOpen)
     }
+    @Test
+    fun ConsegueInserirPercursos(){
+        val openHelper = BDProvasOpenHelper(getAppContext())
+        val bd = openHelper.writableDatabase
+
+        val percurso = Percurso("Trail Curto", 25,)
+
+        TabelaPercursos(bd).insere()
+    }
 }
