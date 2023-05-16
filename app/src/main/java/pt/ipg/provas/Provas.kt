@@ -3,6 +3,7 @@ package pt.ipg.provas
 import android.content.ContentValues
 import android.database.AbstractCursor
 import android.database.Cursor
+import android.provider.BaseColumns
 import java.util.Date
 
 data class Provas(
@@ -23,5 +24,24 @@ data class Provas(
         valores.put(TabelaProvas.CAMPO_FK_PERCURSOS, id_Percursos)
 
         return valores
+    }
+    companion object{
+        fun fromCursor(cursor: Cursor): Provas{
+            val posId = cursor.getColumnIndex(BaseColumns._ID)
+            val posNome = cursor.getColumnIndex(TabelaProvas.CAMPO_NOME)
+            val posLocalidade = cursor.getColumnIndex(TabelaProvas.CAMPO_LOCALIDADE)
+            val posTipo = cursor.getColumnIndex(TabelaProvas.CAMPO_TIPO)
+            val posData = cursor.getColumnIndex(TabelaProvas.CAMPO_DATA)
+            val posFK_Percursos = cursor.getColumnIndex(TabelaProvas.CAMPO_FK_PERCURSOS)
+
+            val nome = cursor.getString(posNome)
+            val localidade = cursor.getString(posLocalidade)
+            val tipo = cursor.getString(posTipo)
+            val data = cursor.getString(posData)
+            val percurso_Id = cursor.getLong(posFK_Percursos)
+            val id = cursor.getLong(posId)
+
+            return Provas(nome, localidade, tipo, data, percurso_Id, id)
+        }
     }
 }

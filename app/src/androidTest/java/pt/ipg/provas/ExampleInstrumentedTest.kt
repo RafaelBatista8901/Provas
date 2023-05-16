@@ -98,6 +98,44 @@ class ExampleInstrumentedTest {
         assert(cursorTodosPercursos.count > 1)
     }
 
+    @Test
+    fun consegueLerProvas(){
+        val bd = getWritableDatabase()
+
+        val percurso = Percurso("Mini-Maratona", 10)
+        inserePercursos(bd, percurso)
+
+        val prova1 = Provas("Assalto ao Cabeço das Fráguas", "Sabugal", "Trail", "21/05/2023", percurso.id)
+        insereProva(bd, prova1)
+
+        val prova2 = Provas("VII Trail Cidade de Estremoz", "Estremoz", "Trail", "22/05/2023", percurso.id)
+        insereProva(bd, prova2)
+
+        val tabelaProvas = TabelaProvas(bd)
+
+        val cursor = tabelaProvas.consulta(
+            TabelaProvas.CAMPOS, "${BaseColumns._ID}=?", arrayOf(prova1.id.toString()),
+            null,
+            null,
+            null
+        )
+
+        assert(cursor.moveToNext())
+        val provaBD = Provas.fromCursor(cursor)
+
+        assertEquals(prova1, provaBD)
+
+        val cursorTodosProvas = tabelaProvas.consulta(
+            TabelaProvas.CAMPOS,
+            null,
+            null,
+            null,
+            null,
+            TabelaProvas.CAMPO_NOME
+        )
+
+        assert(cursorTodosProvas.count > 1)
+    }
 
     private fun insereProva(bd: SQLiteDatabase, provas: Provas) {
         provas.id = TabelaProvas(bd).insere(provas.toContentValues())

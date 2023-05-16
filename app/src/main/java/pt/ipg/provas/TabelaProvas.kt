@@ -15,5 +15,13 @@ class TabelaProvas(db: SQLiteDatabase) : TabelaBD(db, NOME_TABELA) {
         const val CAMPO_TIPO = "tipo"
         const val CAMPO_DATA = "data"
         const val CAMPO_FK_PERCURSOS = "id_Percursos"
+
+        val CAMPOS = arrayOf(BaseColumns._ID,
+            TabelaProvas.CAMPO_NOME,
+            TabelaProvas.CAMPO_LOCALIDADE,
+            TabelaProvas.CAMPO_TIPO,
+            TabelaProvas.CAMPO_DATA,
+            TabelaProvas.CAMPO_FK_PERCURSOS
+        )
     }
 }
