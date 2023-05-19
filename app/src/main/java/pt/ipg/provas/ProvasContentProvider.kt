@@ -6,8 +6,10 @@ import android.database.Cursor
 import android.net.Uri
 
 class ProvasContentProvider : ContentProvider() {
+    private var bdOpenHelper : BDProvasOpenHelper?= null
+
     override fun onCreate(): Boolean {
-        TODO("Not yet implemented")
+        bdOpenHelper = BDProvasOpenHelper(context)
     }
 
     override fun query(
