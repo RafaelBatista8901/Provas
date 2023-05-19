@@ -2,6 +2,7 @@ package pt.ipg.provas
 
 import android.content.ContentProvider
 import android.content.ContentValues
+import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
 
@@ -10,6 +11,7 @@ class ProvasContentProvider : ContentProvider() {
 
     override fun onCreate(): Boolean {
         bdOpenHelper = BDProvasOpenHelper(context)
+        return true
     }
 
     override fun query(
@@ -36,5 +38,18 @@ class ProvasContentProvider : ContentProvider() {
 
     override fun update(p0: Uri, p1: ContentValues?, p2: String?, p3: Array<out String>?): Int {
         TODO("Not yet implemented")
+    }
+
+    companion object{
+        private const val AUTORIDADE = "pt.ipg.provas"
+        const val PROVAS = "provas"
+        const val PERCURSO = "percurso"
+
+        private const val URI_PERCURSOS = 100
+        private const val URI_PROVAS = 200
+        fun uriMatcher() = UriMatcher(UriMatcher.NO_MATCH).apply {
+            addURI(AUTORIDADE, PERCURSO, URI_PERCURSOS)
+            addURI(AUTORIDADE, PROVAS, URI_PROVAS)
+        }
     }
 }
