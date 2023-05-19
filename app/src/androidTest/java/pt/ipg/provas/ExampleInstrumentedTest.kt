@@ -137,6 +137,69 @@ class ExampleInstrumentedTest {
         assert(cursorTodosProvas.count > 1)
     }
 
+    @Test
+    fun consegueAlterarPercurso(){
+        val bd = getWritableDatabase()
+
+        val percurso = Percurso("Mini Trail", 75)
+        inserePercursos(bd, percurso)
+
+        percurso.nome = "Mega Trail"
+        val registoAlterado = TabelaPercursos(bd).altera(percurso.toContentValues(), "${BaseColumns._ID}=?", arrayOf(percurso.id.toString()),)
+
+        assertEquals(1, registoAlterado)
+    }
+
+    @Test
+    fun consegueAlterarProva(){
+        val bd = getWritableDatabase()
+
+        val percurso = Percurso("Mini Trail", 75)
+        inserePercursos(bd, percurso)
+
+        val percurso2 = Percurso("Ultra Trail", 100)
+        inserePercursos(bd, percurso2)
+
+        val prova = Provas("7 Cidades Ultimate Trail", "São Miguel", "Trail", "20/05/2023", percurso.id)
+        insereProva(bd, prova)
+
+        prova.id_Percursos = percurso2.id
+        prova.nome = "VII Trail Cidade de Estremoz"
+        prova.data = "21/05/2023"
+
+        val registosAlterados = TabelaProvas(bd).altera(prova.toContentValues(), "${BaseColumns._ID}=?", arrayOf(prova.id.toString()),)
+
+        assertEquals(1, registosAlterados)
+    }
+
+    @Test
+    fun consegueApagarPercurso(){
+        val bd = getWritableDatabase()
+
+        val percurso = Percurso("Mini Trail", 75)
+        inserePercursos(bd, percurso)
+
+        val registoEliminados = TabelaPercursos(bd).elimina("${BaseColumns._ID}=?", arrayOf(percurso.id.toString()),)
+
+        assertEquals(1, registoEliminados)
+    }
+
+    @Test
+    fun consegueApagarProvas(){
+        val bd = getWritableDatabase()
+
+        val percurso = Percurso("Mini Trail", 75)
+        inserePercursos(bd, percurso)
+
+        val prova = Provas("7 Cidades Ultimate Trail", "São Miguel", "Trail", "20/05/2023", percurso.id)
+        insereProva(bd, prova)
+
+        val registosEliminado = TabelaProvas(bd).elimina("${BaseColumns._ID}=?", arrayOf(prova.id.toString()),)
+
+        assertEquals(1, registosEliminado)
+
+    }
+
     private fun insereProva(bd: SQLiteDatabase, provas: Provas) {
         provas.id = TabelaProvas(bd).insere(provas.toContentValues())
         assertNotEquals(-1, provas.id)
