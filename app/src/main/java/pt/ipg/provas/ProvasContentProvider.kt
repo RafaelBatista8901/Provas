@@ -49,19 +49,32 @@ class ProvasContentProvider : ContentProvider() {
             sortOrder)
     }
 
-    override fun getType(p0: Uri): String? {
+    override fun getType(uri: Uri): String? {
         TODO("Not yet implemented")
     }
 
-    override fun insert(p0: Uri, p1: ContentValues?): Uri? {
+    override fun insert(uri: Uri, values: ContentValues?): Uri? {
+        val bd = bdOpenHelper!!.readableDatabase
+
+        val endereco = uriMatcher().match(uri)
+
+        val tabela = when (endereco){
+            URI_PERCURSOS -> TabelaPercursos(bd)
+            URI_PROVAS -> TabelaProvas(bd)
+            else -> return null
+        }
+        val id = tabela.insere(values!!)
+        if (id == -1L) {
+            return null
+        }
+        return Uri.withAppendedPath(uri, id.toString())
+    }
+
+    override fun delete(uri: Uri, values: String?, selection: Array<out String>?): Int {
         TODO("Not yet implemented")
     }
 
-    override fun delete(p0: Uri, p1: String?, p2: Array<out String>?): Int {
-        TODO("Not yet implemented")
-    }
-
-    override fun update(p0: Uri, p1: ContentValues?, p2: String?, p3: Array<out String>?): Int {
+    override fun update(uri: Uri, values: ContentValues?, selection: String?, selectionArgs: Array<out String>?): Int {
         TODO("Not yet implemented")
     }
 
