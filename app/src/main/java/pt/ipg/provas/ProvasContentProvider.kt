@@ -50,7 +50,15 @@ class ProvasContentProvider : ContentProvider() {
     }
 
     override fun getType(uri: Uri): String? {
-        TODO("Not yet implemented")
+        val endereco = uriMatcher().match(uri)
+
+        return when (endereco){
+            URI_PERCURSOS -> "vnd.android.cursor.dir/$PERCURSO"
+            URI_PERCURSO_ID -> "vnd.android.cursor.item/$PERCURSO"
+            URI_PROVAS -> "vnd.android.cursor.dir/$PROVAS"
+            URI_PROVA_ID -> "vnd.android.cursor.item/$PROVAS"
+            else -> null
+        }
     }
 
     override fun insert(uri: Uri, values: ContentValues?): Uri? {
