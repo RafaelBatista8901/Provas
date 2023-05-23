@@ -54,7 +54,7 @@ class ProvasContentProvider : ContentProvider() {
     }
 
     override fun insert(uri: Uri, values: ContentValues?): Uri? {
-        val bd = bdOpenHelper!!.readableDatabase
+        val bd = bdOpenHelper!!.writableDatabase
 
         val endereco = uriMatcher().match(uri)
 
@@ -63,6 +63,7 @@ class ProvasContentProvider : ContentProvider() {
             URI_PROVAS -> TabelaProvas(bd)
             else -> return null
         }
+
         val id = tabela.insere(values!!)
         if (id == -1L) {
             return null
@@ -71,11 +72,33 @@ class ProvasContentProvider : ContentProvider() {
     }
 
     override fun delete(uri: Uri, values: String?, selection: Array<out String>?): Int {
-        TODO("Not yet implemented")
+        val bd = bdOpenHelper!!.writableDatabase
+
+        val endereco = uriMatcher().match(uri)
+
+        val tabela = when (endereco){
+            URI_PERCURSO_ID -> TabelaPercursos(bd)
+            URI_PROVA_ID -> TabelaProvas(bd)
+            else -> return 0
+        }
+
+        val id = uri.lastPathSegment!!
+        return tabela.elimina("${BaseColumns._ID}=?", arrayOf(id))
     }
 
     override fun update(uri: Uri, values: ContentValues?, selection: String?, selectionArgs: Array<out String>?): Int {
-        TODO("Not yet implemented")
+        val bd = bdOpenHelper!!.writableDatabase
+
+        val endereco = uriMatcher().match(uri)
+
+        val tabela = when (endereco){
+            URI_PERCURSO_ID -> TabelaPercursos(bd)
+            URI_PROVA_ID -> TabelaProvas(bd)
+            else -> return 0
+        }
+
+        val id = uri.lastPathSegment!!
+        return tabela.altera(values!!, "${BaseColumns._ID}=?", arrayOf(id))
     }
 
     companion object{
