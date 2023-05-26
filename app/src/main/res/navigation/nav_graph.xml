@@ -31,7 +31,7 @@
     <fragment
         android:id="@+id/ListaProvasFragment"
         android:name="pt.ipg.provas.ListaProvasFragment"
-        android:label="@string/Lista_Provas_Label"
+        android:label="@string/Lista_Provas_Lable"
         tools:layout="@layout/fragment_lista_provas">
         <action
             android:id="@+id/action_listaProvasFragment_to_MenuPrincipalFragment"
