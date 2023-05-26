@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import pt.ipg.provas.databinding.FragmentListaProvasBinding
 import pt.ipg.provas.databinding.FragmentMenuPrincipalBinding
 
+private const val ID_LOADER_PROVAS = 0
+
 class ListaProvasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
     private var _binding: FragmentListaProvasBinding? = null
 
@@ -36,6 +38,9 @@ class ListaProvasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
         val adapterProvas = AdapterProvas()
         binding.RecycleViewLivros.adapter = adapterProvas
         binding.RecycleViewLivros.layoutManager = LinearLayoutManager(requireContext())
+
+        val loader = LoaderManager.getInstance(this)
+        loader.initLoader(ID_LOADER_PROVAS, null, this)
     }
 
     companion object {
