@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import pt.ipg.provas.databinding.FragmentListaProvasBinding
 import pt.ipg.provas.databinding.FragmentMenuPrincipalBinding
 
@@ -31,6 +32,7 @@ class ListaProvasFragment : Fragment() {
 
         val adapterProvas = AdapterProvas()
         binding.RecycleViewLivros.adapter = adapterProvas
+        binding.RecycleViewLivros.layoutManager = LinearLayoutManager(requireContext())
     }
 
     companion object {
