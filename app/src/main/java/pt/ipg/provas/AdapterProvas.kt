@@ -22,7 +22,7 @@ class AdapterProvas : RecyclerView.Adapter<AdapterProvas.ViewHolderProvas>() {
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return cursor?.count ?: 0
     }
 
     override fun onBindViewHolder(holder: ViewHolderProvas, position: Int) {
