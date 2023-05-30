@@ -30,17 +30,14 @@ class ListaProvasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
     ): View? {
         _binding = FragmentListaProvasBinding.inflate(inflater, container, false)
         return binding.root
-
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_lista_provas, container, false)
     }
 
-    private val adapterProvas: AdapterProvas? = null
+    private var adapterProvas: AdapterProvas? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapterProvas = AdapterProvas(this)
+        adapterProvas = AdapterProvas(this)
         binding.RecycleViewLivros.adapter = adapterProvas
         binding.RecycleViewLivros.layoutManager = LinearLayoutManager(requireContext())
 

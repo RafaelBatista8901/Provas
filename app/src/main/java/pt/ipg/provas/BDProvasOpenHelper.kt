@@ -15,7 +15,7 @@ class BDProvasOpenHelper(
         TabelaProvas(db).cria()
     }
 
-    override fun onUpgrade(db: SQLiteDatabase?, OldVersion: Int, p2: Int) {
+    override fun onUpgrade(db: SQLiteDatabase?, OldVersion: Int, newVersion: Int) {
 
     }
 
