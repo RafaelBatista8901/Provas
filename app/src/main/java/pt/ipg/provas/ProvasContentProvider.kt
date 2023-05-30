@@ -111,8 +111,13 @@ class ProvasContentProvider : ContentProvider() {
 
     companion object{
         private const val AUTORIDADE = "pt.ipg.provas"
-        const val PROVAS = "provas"
-        const val PERCURSO = "percurso"
+        private const val PROVAS = "provas"
+        private const val PERCURSO = "percurso"
+
+        val ENDERECO_BASE = Uri.parse("content://$AUTORIDADE")
+
+        val ENDERECO_PERCURSO = Uri.withAppendedPath(ENDERECO_BASE, PERCURSO)
+        val ENDERECO_PROVAS = Uri.withAppendedPath(ENDERECO_BASE, PROVAS)
 
         private const val URI_PERCURSOS = 100
         private const val URI_PERCURSO_ID = 101

@@ -1,5 +1,6 @@
 package pt.ipg.provas
 
+import android.content.ContentProvider
 import android.database.Cursor
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,12 +8,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.loader.app.LoaderManager
+import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.recyclerview.widget.LinearLayoutManager
 import pt.ipg.provas.databinding.FragmentListaProvasBinding
 import pt.ipg.provas.databinding.FragmentMenuPrincipalBinding
+import pt.ipg.provas.databinding.FragmentSobreBinding
 
 private const val ID_LOADER_PROVAS = 0
+
+private val adapterProvas1: AdapterProvas
+    get() {
+        val adapterProvas = AdapterProvas()
+        return adapterProvas
+    }
 
 class ListaProvasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
     private var _binding: FragmentListaProvasBinding? = null
@@ -28,9 +37,14 @@ class ListaProvasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        _binding = FragmentListaProvasBinding.inflate(inflater, container, false)
+        return binding.root
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_lista_provas, container, false)
     }
+
+    private val adapterProvas = AdapterProvas()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -43,19 +57,28 @@ class ListaProvasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
         loader.initLoader(ID_LOADER_PROVAS, null, this)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     companion object {
 
     }
 
     override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> {
-        TODO("Not yet implemented")
+        return CursorLoader(requireContext(),
+            ProvasContentProvider.ENDERECO_PROVAS,
+            TabelaProvas.CAMPOS,
+            null, null,
+            TabelaProvas.CAMPO_NOME)
     }
 
     override fun onLoaderReset(loader: Loader<Cursor>) {
-        TODO("Not yet implemented")
+        adapterProvas.cursor = null
     }
 
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
-        TODO("Not yet implemented")
+        adapterProvas.cursor = data
     }
 }
