@@ -26,7 +26,7 @@ class ExampleInstrumentedTest {
 
     @Before
     fun apagaBaseDados(){
-        getAppContext().deleteDatabase(BDProvasOpenHelper.NOME_BADE_DADOS)
+        //getAppContext().deleteDatabase(BDProvasOpenHelper.NOME_BADE_DADOS)
     }
 
     @Test

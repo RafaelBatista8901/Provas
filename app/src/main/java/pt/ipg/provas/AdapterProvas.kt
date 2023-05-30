@@ -37,7 +37,7 @@ class AdapterProvas(val fragment: ListaProvasFragment) : RecyclerView.Adapter<Ad
     }
 
     override fun onBindViewHolder(holder: ViewHolderProvas, position: Int) {
-        cursor!!.move(position)
+        cursor!!.moveToPosition(position)
         holder.provas = Provas.fromCursor(cursor!!)
     }
 }
