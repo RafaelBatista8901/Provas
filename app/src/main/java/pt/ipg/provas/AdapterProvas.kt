@@ -5,20 +5,23 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import java.util.PropertyResourceBundle
 
-class AdapterProvas : RecyclerView.Adapter<AdapterProvas.ViewHolderProvas>() {
+class AdapterProvas(val fragment: ListaProvasFragment) : RecyclerView.Adapter<AdapterProvas.ViewHolderProvas>() {
     var cursor: Cursor? = null
         set(value){
             field = value
             notifyDataSetChanged()
         }
 
-    inner class ViewHolderProvas(itemView: View) : ViewHolder(itemView) {
-
+    inner class ViewHolderProvas(contentor: View) : ViewHolder(contentor) {
+        internal var provas: Provas
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderProvas {
-        TODO("Not yet implemented")
+        return ViewHolderProvas(
+        fragment.layoutInflater.inflate(R.layout.item_prova, parent, false)
+        )
     }
 
     override fun getItemCount(): Int {
@@ -26,6 +29,7 @@ class AdapterProvas : RecyclerView.Adapter<AdapterProvas.ViewHolderProvas>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolderProvas, position: Int) {
-        TODO("Not yet implemented")
+        cursor!!.move(position)
+        holder.provas = Provas.fromCursor(cursor!!)
     }
 }

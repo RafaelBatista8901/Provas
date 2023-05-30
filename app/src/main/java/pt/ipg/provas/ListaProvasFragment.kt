@@ -1,6 +1,5 @@
 package pt.ipg.provas
 
-import android.content.ContentProvider
 import android.database.Cursor
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,16 +11,8 @@ import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.recyclerview.widget.LinearLayoutManager
 import pt.ipg.provas.databinding.FragmentListaProvasBinding
-import pt.ipg.provas.databinding.FragmentMenuPrincipalBinding
-import pt.ipg.provas.databinding.FragmentSobreBinding
 
 private const val ID_LOADER_PROVAS = 0
-
-private val adapterProvas1: AdapterProvas
-    get() {
-        val adapterProvas = AdapterProvas()
-        return adapterProvas
-    }
 
 class ListaProvasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
     private var _binding: FragmentListaProvasBinding? = null
@@ -44,12 +35,12 @@ class ListaProvasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
         return inflater.inflate(R.layout.fragment_lista_provas, container, false)
     }
 
-    private val adapterProvas = AdapterProvas()
+    private val adapterProvas: AdapterProvas? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapterProvas = AdapterProvas()
+        val adapterProvas = AdapterProvas(this)
         binding.RecycleViewLivros.adapter = adapterProvas
         binding.RecycleViewLivros.layoutManager = LinearLayoutManager(requireContext())
 
@@ -62,10 +53,6 @@ class ListaProvasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
         _binding = null
     }
 
-    companion object {
-
-    }
-
     override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> {
         return CursorLoader(requireContext(),
             ProvasContentProvider.ENDERECO_PROVAS,
@@ -75,10 +62,10 @@ class ListaProvasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
     }
 
     override fun onLoaderReset(loader: Loader<Cursor>) {
-        adapterProvas.cursor = null
+        adapterProvas!!.cursor = null
     }
 
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
-        adapterProvas.cursor = data
+        adapterProvas!!.cursor = data
     }
 }
