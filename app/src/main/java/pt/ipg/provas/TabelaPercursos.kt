@@ -10,6 +10,8 @@ class TabelaPercursos(db: SQLiteDatabase) : TabelaBD(db, NOME_TABELA) {
 
     companion object {
         const val NOME_TABELA = "percursos"
+
+        const val CAMPO_ID = "${NOME_TABELA}.${BaseColumns._ID}"
         const val CAMPO_NOME = "nome"
         const val CAMPO_DISTANCIA = "distancia"
 

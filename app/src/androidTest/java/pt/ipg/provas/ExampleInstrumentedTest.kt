@@ -11,7 +11,6 @@ import org.junit.runner.RunWith
 
 import org.junit.Assert.*
 import org.junit.Before
-import java.lang.NullPointerException
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -55,10 +54,10 @@ class ExampleInstrumentedTest {
         val percurso = Percurso("Trail Longo", 40)
         inserePercursos(bd, percurso)
 
-        val prova1 = Provas("24H Mem Martins", "Mem Martins", "BTT", "14/05/2023", percurso.id)
+        val prova1 = Provas("24H Mem Martins", "Mem Martins", "BTT", "14/05/2023", percurso)
         insereProva(bd, prova1)
 
-        val prova2 = Provas("VI Trail Trilhos do Ceireiro", "Beselga", "Trail", "14/05/2023", percurso.id)
+        val prova2 = Provas("VI Trail Trilhos do Ceireiro", "Beselga", "Trail", "14/05/2023", percurso)
         insereProva(bd, prova2)
     }
 
@@ -105,16 +104,16 @@ class ExampleInstrumentedTest {
         val percurso = Percurso("Mini-Maratona", 10)
         inserePercursos(bd, percurso)
 
-        val prova1 = Provas("Assalto ao Cabeço das Fráguas", "Sabugal", "Trail", "21/05/2023", percurso.id)
+        val prova1 = Provas("Assalto ao Cabeço das Fráguas", "Sabugal", "Trail", "21/05/2023", percurso)
         insereProva(bd, prova1)
 
-        val prova2 = Provas("VII Trail Cidade de Estremoz", "Estremoz", "Trail", "22/05/2023", percurso.id)
+        val prova2 = Provas("VII Trail Cidade de Estremoz", "Estremoz", "Trail", "22/05/2023", percurso)
         insereProva(bd, prova2)
 
         val tabelaProvas = TabelaProvas(bd)
 
         val cursor = tabelaProvas.consulta(
-            TabelaProvas.CAMPOS, "${BaseColumns._ID}=?", arrayOf(prova1.id.toString()),
+            TabelaProvas.CAMPOS, "${TabelaProvas.CAMPO_ID}=?", arrayOf(prova1.id.toString()),
             null,
             null,
             null
@@ -160,10 +159,10 @@ class ExampleInstrumentedTest {
         val percurso2 = Percurso("Ultra Trail", 100)
         inserePercursos(bd, percurso2)
 
-        val prova = Provas("7 Cidades Ultimate Trail", "São Miguel", "Trail", "20/05/2023", percurso.id)
+        val prova = Provas("7 Cidades Ultimate Trail", "São Miguel", "Trail", "20/05/2023", percurso)
         insereProva(bd, prova)
 
-        prova.id_Percursos = percurso2.id
+        prova.percursos = percurso2
         prova.nome = "VII Trail Cidade de Estremoz"
         prova.data = "21/05/2023"
 
@@ -191,7 +190,7 @@ class ExampleInstrumentedTest {
         val percurso = Percurso("Mini Trail", 75)
         inserePercursos(bd, percurso)
 
-        val prova = Provas("7 Cidades Ultimate Trail", "São Miguel", "Trail", "20/05/2023", percurso.id)
+        val prova = Provas("7 Cidades Ultimate Trail", "São Miguel", "Trail", "20/05/2023", percurso)
         insereProva(bd, prova)
 
         val registosEliminado = TabelaProvas(bd).elimina("${BaseColumns._ID}=?", arrayOf(prova.id.toString()),)

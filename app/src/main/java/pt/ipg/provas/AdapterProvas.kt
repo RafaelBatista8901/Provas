@@ -4,6 +4,7 @@ import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 
@@ -18,13 +19,30 @@ class AdapterProvas(val fragment: ListaProvasFragment) : RecyclerView.Adapter<Ad
         private val textViewNome = contentor.findViewById<TextView>(R.id.textView_nome)
         private val textViewPercurso = contentor.findViewById<TextView>(R.id.textView_Percurso)
 
+        init {
+            contentor.setOnClickListener {
+                viewHolderSeleccionado?.desSeleciona()
+                seleciona()
+            }
+        }
+
         internal var provas: Provas? = null
             set(value){
                 field = value
                 textViewNome.text = provas?.nome ?: ""
-                textViewPercurso.text = provas?.id_Percursos.toString() ?: ""
+                textViewPercurso.text = provas?.percursos?.nome ?: ""
             }
+        fun seleciona() {
+            viewHolderSeleccionado = this
+            itemView.setBackgroundResource(R.color.item_selecionado)
+        }
+
+        fun desSeleciona() {
+            itemView.setBackgroundResource(android.R.color.white)
+        }
     }
+
+    private var viewHolderSeleccionado : ViewHolderProvas? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderProvas {
         return ViewHolderProvas(
