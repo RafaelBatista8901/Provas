@@ -47,6 +47,7 @@ class ListaProvasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
         loader.initLoader(ID_LOADER_PROVAS, null, this)
 
         val activity = activity as MainActivity
+        activity.fragment = this
         activity.IdMenuAtual = R.menu.menu_lista_provas
     }
 

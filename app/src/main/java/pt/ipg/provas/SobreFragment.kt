@@ -34,6 +34,10 @@ class SobreFragment : Fragment() {
 
         binding.buttonSecond.setOnClickListener {
             findNavController().navigate(R.id.action_SobreFragment_to_MenuPrincipalFragment)
+
+            val activity = activity as MainActivity
+            activity.fragment = this
+            activity.IdMenuAtual = R.menu.menu_main
         }
     }
 
