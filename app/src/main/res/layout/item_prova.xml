@@ -9,8 +9,8 @@
     <FrameLayout
         android:layout_width="409dp"
         android:layout_height="130dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="1dp"
         tools:ignore="MissingConstraints">
 
         <TextView
