@@ -23,6 +23,15 @@ class ListaProvasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
     private val binding get() = _binding!!
 
     var ProvaSelecionada : Provas? = null
+        set (value){
+            field = value
+
+            val mostrarEliminarAlterar = (value != null)
+
+            val activity = activity as MainActivity
+            activity.mostrarOpcaoMenu(R.id.action_editar, mostrarEliminarAlterar)
+            activity.mostrarOpcaoMenu(R.id.action_eliminar, mostrarEliminarAlterar)
+        }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
