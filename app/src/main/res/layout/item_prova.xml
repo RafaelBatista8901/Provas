@@ -3,33 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:isScrollContainer="false">
 
-    <FrameLayout
-        android:layout_width="409dp"
-        android:layout_height="130dp"
+    <TextView
+        android:id="@+id/textView_Percurso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/trail_longo"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textView_nome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="76dp"
-            android:text="@string/trail_dos_descobrimentos"
-            android:textColor="#B10000"
-            android:textSize="24sp" />
+    <TextView
+        android:id="@+id/textView_nome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/trail_dos_descobrimentos"
+        android:textColor="#B10000"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_Percurso" />
 
-        <TextView
-            android:id="@+id/textView_Percurso"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/trail_longo"
-            android:textSize="20sp" />
-    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

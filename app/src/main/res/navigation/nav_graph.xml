@@ -36,5 +36,17 @@
         <action
             android:id="@+id/action_listaProvasFragment_to_MenuPrincipalFragment"
             app:destination="@id/MenuPrincipalFragment" />
+        <action
+            android:id="@+id/action_ListaProvasFragment_to_novaPorvaFragment"
+            app:destination="@id/novaPorvaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/novaPorvaFragment"
+        android:name="pt.ipg.provas.NovaProvaFragment"
+        android:label="@string/nova_prova_label"
+        tools:layout="@layout/fragment_nova_prova">
+        <action
+            android:id="@+id/action_novaPorvaFragment_to_ListaProvasFragment"
+            app:destination="@id/ListaProvasFragment" />
     </fragment>
 </navigation>
