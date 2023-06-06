@@ -34,6 +34,7 @@ class AdapterProvas(val fragment: ListaProvasFragment) : RecyclerView.Adapter<Ad
             }
         fun seleciona() {
             viewHolderSeleccionado = this
+            fragment.ProvaSelecionada = provas
             itemView.setBackgroundResource(R.color.item_selecionado)
         }
 
