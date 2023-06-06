@@ -45,6 +45,9 @@ class ListaProvasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
 
         val loader = LoaderManager.getInstance(this)
         loader.initLoader(ID_LOADER_PROVAS, null, this)
+
+        val activity = activity as MainActivity
+        activity.IdMenuAtual = R.menu.menu_lista_provas
     }
 
     override fun onDestroyView() {

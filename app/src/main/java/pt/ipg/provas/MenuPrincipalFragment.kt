@@ -38,6 +38,9 @@ class MenuPrincipalFragment : Fragment() {
 
         binding.buttonProvas.setOnClickListener{
             findNavController().navigate(R.id.action_MenuPrincipalFragment_to_listaProvasFragment)
+
+            val activity = activity as MainActivity
+            activity.IdMenuAtual = R.menu.menu_lista_provas
         }
     }
 
