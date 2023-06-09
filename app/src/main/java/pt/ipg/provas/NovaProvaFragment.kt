@@ -1,16 +1,23 @@
 package pt.ipg.provas
 
+import android.database.Cursor
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SimpleCursorAdapter
+import androidx.loader.app.LoaderManager
+import androidx.loader.content.CursorLoader
+import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
 import pt.ipg.provas.databinding.FragmentNovaProvaBinding
 
 
-class NovaProvaFragment : Fragment() {
+private const val ID_LOADER_PERCURSOS = 0
+
+class NovaProvaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     private var _binding: FragmentNovaProvaBinding? = null
 
     // This property is only valid between onCreateView and
@@ -30,9 +37,12 @@ class NovaProvaFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-            val activity = activity as MainActivity
-            activity.fragment = this
-            activity.IdMenuAtual = R.menu.menu_guardar_cancelar
+        val loader = LoaderManager.getInstance(this)
+        loader.initLoader(ID_LOADER_PERCURSOS, null, this)
+
+        val activity = activity as MainActivity
+        activity.fragment = this
+        activity.IdMenuAtual = R.menu.menu_guardar_cancelar
         }
 
     override fun onDestroyView() {
@@ -60,5 +70,33 @@ class NovaProvaFragment : Fragment() {
 
     private fun guardar() {
         TODO("Not yet implemented")
+    }
+
+    override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> {
+        return CursorLoader(requireContext(),
+            ProvasContentProvider.ENDERECO_PERCURSO,
+            TabelaPercursos.CAMPOS,
+            null, null,
+            TabelaPercursos.CAMPO_NOME_PERCURSO)
+    }
+
+    override fun onLoaderReset(loader: Loader<Cursor>) {
+       binding.spinner.adapter = null
+    }
+
+    override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
+        if (data == null){
+            binding.spinner.adapter = null
+            return
+        }
+
+        binding.spinner.adapter = SimpleCursorAdapter(
+            requireContext(),
+            android.R.layout.simple_list_item_1,
+            data,
+            arrayOf(TabelaPercursos.CAMPO_NOME_PERCURSO),
+            intArrayOf(android.R.id.text1),
+            0
+        )
     }
 }
