@@ -38,7 +38,7 @@ class ExampleInstrumentedTest {
     fun ConsegueInserirPercursos(){
         val bd = getWritableDatabase()
 
-        val percurso = Percurso("Trail Curto", 10)
+        val percurso = Percurso("Trail Curto", "10")
         inserePercursos(bd, percurso)
     }
 
@@ -51,7 +51,7 @@ class ExampleInstrumentedTest {
     fun ConsegueInserirProvas(){
         val bd = getWritableDatabase()
 
-        val percurso = Percurso("Trail Longo", 40)
+        val percurso = Percurso("Trail Longo", "40")
         inserePercursos(bd, percurso)
 
         val prova1 = Provas("24H Mem Martins", "Mem Martins", "BTT", "14/05/2023", percurso)
@@ -65,10 +65,10 @@ class ExampleInstrumentedTest {
     fun consegueLerPercurso() {
         val bd = getWritableDatabase()
 
-        val percurso1 = Percurso("Maratona", 50)
+        val percurso1 = Percurso("Maratona", "50")
         inserePercursos(bd, percurso1)
 
-        val percurso2 = Percurso("Meia_Maratona", 25)
+        val percurso2 = Percurso("Meia_Maratona", "25")
         inserePercursos(bd, percurso2)
 
         val tabelaPercursos = TabelaPercursos(bd)
@@ -101,7 +101,7 @@ class ExampleInstrumentedTest {
     fun consegueLerProvas(){
         val bd = getWritableDatabase()
 
-        val percurso = Percurso("Mini-Maratona", 10)
+        val percurso = Percurso("Mini-Maratona", "10")
         inserePercursos(bd, percurso)
 
         val prova1 = Provas("Assalto ao Cabeço das Fráguas", "Sabugal", "Trail", "21/05/2023", percurso)
@@ -140,7 +140,7 @@ class ExampleInstrumentedTest {
     fun consegueAlterarPercurso(){
         val bd = getWritableDatabase()
 
-        val percurso = Percurso("Mini Trail", 75)
+        val percurso = Percurso("Mini Trail", "75")
         inserePercursos(bd, percurso)
 
         percurso.nomePercurso = "Mega Trail"
@@ -153,10 +153,10 @@ class ExampleInstrumentedTest {
     fun consegueAlterarProva(){
         val bd = getWritableDatabase()
 
-        val percurso = Percurso("Mini Trail", 75)
+        val percurso = Percurso("Mini Trail", "75")
         inserePercursos(bd, percurso)
 
-        val percurso2 = Percurso("Ultra Trail", 100)
+        val percurso2 = Percurso("Ultra Trail", "100")
         inserePercursos(bd, percurso2)
 
         val prova = Provas("7 Cidades Ultimate Trail", "São Miguel", "Trail", "20/05/2023", percurso)
@@ -175,7 +175,7 @@ class ExampleInstrumentedTest {
     fun consegueApagarPercurso(){
         val bd = getWritableDatabase()
 
-        val percurso = Percurso("Mini Trail", 75)
+        val percurso = Percurso("Mini Trail", "75")
         inserePercursos(bd, percurso)
 
         val registoEliminados = TabelaPercursos(bd).elimina("${BaseColumns._ID}=?", arrayOf(percurso.id.toString()),)
@@ -187,7 +187,7 @@ class ExampleInstrumentedTest {
     fun consegueApagarProvas(){
         val bd = getWritableDatabase()
 
-        val percurso = Percurso("Mini Trail", 75)
+        val percurso = Percurso("Mini Trail", "75")
         inserePercursos(bd, percurso)
 
         val prova = Provas("7 Cidades Ultimate Trail", "São Miguel", "Trail", "20/05/2023", percurso)

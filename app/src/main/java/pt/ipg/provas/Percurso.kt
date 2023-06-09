@@ -6,7 +6,7 @@ import android.provider.BaseColumns
 
 data class Percurso(
     var nomePercurso: String,
-    var distancia: Int,
+    var distancia: String,
     var id: Long = -1
 ){
     fun toContentValues(): ContentValues{
@@ -24,7 +24,7 @@ data class Percurso(
             val posDistancia = cursor.getColumnIndex(TabelaPercursos.CAMPO_DISTANCIA)
 
             val nome = cursor.getString(posNome)
-            val distancia = cursor.getInt(posDistancia)
+            val distancia = cursor.getString(posDistancia)
             val id = cursor.getLong(posId)
 
             return Percurso(nome, distancia, id)

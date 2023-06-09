@@ -42,7 +42,7 @@ data class Provas(
 
             val percurso_id = cursor.getLong(posFK_Percursos)
             val nome_percurso = cursor.getString(posNomePercurso)
-            val distancia_percurso = cursor.getInt(posDistPercurso)
+            val distancia_percurso = cursor.getString(posDistPercurso)
 
             return Provas(nome, localidade, tipo, data, Percurso(nome_percurso, distancia_percurso, percurso_id), id)
         }

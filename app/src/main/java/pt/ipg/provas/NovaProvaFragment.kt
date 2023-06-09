@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SimpleCursorAdapter
+import android.widget.Toast
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
@@ -71,13 +72,54 @@ class NovaProvaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     private fun guardar() {
         val nome = binding.editTextNome.text.toString()
         if (nome.isBlank()){
-            binding.editTextNome.error = "Deve preencher o nome da prova"
+            binding.editTextNome.error = getString(R.string.nome_obrigatorio)
             binding.editTextNome.requestFocus()
             return
         }
 
-        val percursos = binding.spinnerPercursos.selectedItemId
+        val percursosId = binding.spinnerPercursos.selectedItemId
 
+        val localidade = binding.editTextLocalidade.text.toString()
+        if (localidade.isBlank()){
+            binding.editTextLocalidade.error = getString(R.string.localidade_obrigatorio)
+            binding.editTextLocalidade.requestFocus()
+            return
+        }
+
+        val tipo = binding.editTextTipo.text.toString()
+        if (tipo.isBlank()){
+            binding.editTextTipo.error = getString(R.string.tipo_obrigatorio)
+            binding.editTextTipo.requestFocus()
+            return
+        }
+
+        val data = binding.editTextData.text.toString()
+        if (data.isBlank()){
+            binding.editTextData.error = getString(R.string.data_obrigatorio)
+            binding.editTextData.requestFocus()
+            return
+        }
+
+        val prova = Provas(
+            nome,
+            localidade,
+            tipo,
+            data,
+            Percurso("?", "?", percursosId)
+        )
+
+        val id = requireActivity().contentResolver.insert(
+            ProvasContentProvider.ENDERECO_PROVAS,
+            prova.toContentValues()
+        )
+
+        if (id == null) {
+            binding.editTextNome.error = getString(R.string.erro_guardar_prova)
+            return
+        }
+
+        Toast.makeText(requireContext(), getString(R.string.prova_guardado_com_sucesso), Toast.LENGTH_SHORT).show()
+        cancelar()
 
     }
 

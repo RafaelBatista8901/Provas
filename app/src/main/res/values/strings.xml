@@ -61,4 +61,11 @@
     <string name="nova_prova_label">Nova Prova</string>
     <string name="guardar">Guardar</string>
     <string name="cancelar">Cancelar</string>
+    <string name="titulo_obrigatorio" />
+    <string name="nome_obrigatorio">Deve preencher o nome da prova</string>
+    <string name="localidade_obrigatorio">Deve inserir uma localidade</string>
+    <string name="tipo_obrigatorio">Deve inserir um tipo</string>
+    <string name="data_obrigatorio">Deve inserir uma data</string>
+    <string name="erro_guardar_prova">Náo foi possivel guardar a prova</string>
+    <string name="prova_guardado_com_sucesso">Prova guardada com sucesso</string>
 </resources>
