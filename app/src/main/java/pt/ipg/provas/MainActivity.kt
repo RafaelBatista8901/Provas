@@ -62,6 +62,7 @@ class MainActivity : AppCompatActivity() {
 
         val opcaoProcessada = when (fragment) {
             is ListaProvasFragment -> (fragment as ListaProvasFragment).processaOpcaoMenu(item)
+            is NovaProvaFragment -> (fragment as NovaProvaFragment).processaOpcaoMenu(item)
             else -> when (item.itemId){
                 R.id.action_settings -> true
                 else -> false

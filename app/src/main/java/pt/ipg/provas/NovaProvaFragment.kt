@@ -3,8 +3,10 @@ package pt.ipg.provas
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import pt.ipg.provas.databinding.FragmentNovaProvaBinding
 
 
@@ -30,11 +32,33 @@ class NovaProvaFragment : Fragment() {
 
             val activity = activity as MainActivity
             activity.fragment = this
-            activity.IdMenuAtual = R.menu.menu_main
+            activity.IdMenuAtual = R.menu.menu_guardar_cancelar
         }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    fun processaOpcaoMenu(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_guardar -> {
+                guardar()
+                true
+            }
+            R.id.action_cancelar -> {
+                cancelar()
+                true
+            }
+            else -> false
+        }
+    }
+
+    private fun cancelar() {
+        findNavController().navigate(R.id.action_novaProvaFragment_to_ListaProvasFragment)
+    }
+
+    private fun guardar() {
+        TODO("Not yet implemented")
     }
 }

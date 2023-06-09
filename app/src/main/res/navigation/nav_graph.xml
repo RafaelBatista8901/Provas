@@ -46,7 +46,7 @@
         android:label="@string/nova_prova_label"
         tools:layout="@layout/fragment_nova_prova">
         <action
-            android:id="@+id/action_novaPorvaFragment_to_ListaProvasFragment"
+            android:id="@+id/action_novaProvaFragment_to_ListaProvasFragment"
             app:destination="@id/ListaProvasFragment" />
     </fragment>
 </navigation>
