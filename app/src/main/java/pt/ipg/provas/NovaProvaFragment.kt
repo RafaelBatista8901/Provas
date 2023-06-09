@@ -69,7 +69,16 @@ class NovaProvaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     }
 
     private fun guardar() {
-        TODO("Not yet implemented")
+        val nome = binding.editTextNome.text.toString()
+        if (nome.isBlank()){
+            binding.editTextNome.error = "Deve preencher o nome da prova"
+            binding.editTextNome.requestFocus()
+            return
+        }
+
+        val percursos = binding.spinnerPercursos.selectedItemId
+
+
     }
 
     override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> {
@@ -81,16 +90,16 @@ class NovaProvaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     }
 
     override fun onLoaderReset(loader: Loader<Cursor>) {
-       binding.spinner.adapter = null
+       binding.spinnerPercursos.adapter = null
     }
 
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
         if (data == null){
-            binding.spinner.adapter = null
+            binding.spinnerPercursos.adapter = null
             return
         }
 
-        binding.spinner.adapter = SimpleCursorAdapter(
+        binding.spinnerPercursos.adapter = SimpleCursorAdapter(
             requireContext(),
             android.R.layout.simple_list_item_1,
             data,

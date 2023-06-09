@@ -12,34 +12,65 @@
         android:layout_margin="8dp">
 
         <EditText
-            android:id="@+id/editTextText"
+            android:id="@+id/editTextNome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="text"
             android:text="Name" />
 
-        <TextView
-            android:id="@+id/textViewPercurso"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Percurso" />
-
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="50dp" />
-
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="570dp">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <EditText
+                android:id="@+id/editTextLocalidade"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="hint" />
+                android:ems="10"
+                android:inputType="text"
+                android:text="Localidade" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/editTextTipo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:text="Tipo" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/editTextData"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:ems="10"
+                        android:inputType="text"
+                        android:text="Data" />
+
+                    <TextView
+                        android:id="@+id/textViewPercurso"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Percurso" />
+
+                    <Spinner
+                        android:id="@+id/spinner_percursos"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="50dp" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
+
         </com.google.android.material.textfield.TextInputLayout>
 
     </com.google.android.material.textfield.TextInputLayout>
