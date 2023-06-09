@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import pt.ipg.provas.databinding.FragmentListaProvasBinding
 
@@ -71,7 +72,7 @@ class ListaProvasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
             ProvasContentProvider.ENDERECO_PROVAS,
             TabelaProvas.CAMPOS,
             null, null,
-            TabelaProvas.CAMPO_NOME)
+            TabelaProvas.CAMPO_NOME_PROVA)
     }
 
     override fun onLoaderReset(loader: Loader<Cursor>) {
@@ -109,6 +110,6 @@ class ListaProvasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
     }
 
     private fun adicionaProvas() {
-        TODO("Not yet implemented")
+        findNavController().navigate(R.id.action_ListaProvasFragment_to_novaProvaFragment)
     }
 }

@@ -37,11 +37,11 @@
             android:id="@+id/action_listaProvasFragment_to_MenuPrincipalFragment"
             app:destination="@id/MenuPrincipalFragment" />
         <action
-            android:id="@+id/action_ListaProvasFragment_to_novaPorvaFragment"
-            app:destination="@id/novaPorvaFragment" />
+            android:id="@+id/action_ListaProvasFragment_to_novaProvaFragment"
+            app:destination="@id/novaProvaFragment" />
     </fragment>
     <fragment
-        android:id="@+id/novaPorvaFragment"
+        android:id="@+id/novaProvaFragment"
         android:name="pt.ipg.provas.NovaProvaFragment"
         android:label="@string/nova_prova_label"
         tools:layout="@layout/fragment_nova_prova">

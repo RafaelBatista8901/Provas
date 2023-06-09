@@ -5,17 +5,17 @@ import android.database.Cursor
 import android.provider.BaseColumns
 
 data class Provas(
-    var nome: String,
+    var nomeProva: String,
     var localidade: String,
     var tipo: String,
     var data: String,
     var percursos: Percurso,
-    var id: Long = -1
+    var idProva: Long = -1
 ) {
     fun toContentValues(): ContentValues {
         val valores = ContentValues()
 
-        valores.put(TabelaProvas.CAMPO_NOME, nome)
+        valores.put(TabelaProvas.CAMPO_NOME_PROVA, nomeProva)
         valores.put(TabelaProvas.CAMPO_LOCALIDADE, localidade)
         valores.put(TabelaProvas.CAMPO_TIPO, tipo)
         valores.put(TabelaProvas.CAMPO_DATA, data)
@@ -26,7 +26,7 @@ data class Provas(
     companion object{
         fun fromCursor(cursor: Cursor): Provas{
             val posId = cursor.getColumnIndex(BaseColumns._ID)
-            val posNome = cursor.getColumnIndex(TabelaProvas.CAMPO_NOME)
+            val posNome = cursor.getColumnIndex(TabelaProvas.CAMPO_NOME_PROVA)
             val posLocalidade = cursor.getColumnIndex(TabelaProvas.CAMPO_LOCALIDADE)
             val posTipo = cursor.getColumnIndex(TabelaProvas.CAMPO_TIPO)
             val posData = cursor.getColumnIndex(TabelaProvas.CAMPO_DATA)

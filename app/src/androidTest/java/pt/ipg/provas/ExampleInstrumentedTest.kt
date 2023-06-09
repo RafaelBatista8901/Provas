@@ -91,7 +91,7 @@ class ExampleInstrumentedTest {
             null,
             null,
             null,
-            TabelaPercursos.CAMPO_NOME
+            TabelaPercursos.CAMPO_NOME_PERCURSO
         )
 
         assert(cursorTodosPercursos.count > 1)
@@ -113,7 +113,7 @@ class ExampleInstrumentedTest {
         val tabelaProvas = TabelaProvas(bd)
 
         val cursor = tabelaProvas.consulta(
-            TabelaProvas.CAMPOS, "${TabelaProvas.CAMPO_ID}=?", arrayOf(prova1.id.toString()),
+            TabelaProvas.CAMPOS, "${TabelaProvas.CAMPO_ID}=?", arrayOf(prova2.idProva.toString()),
             null,
             null,
             null
@@ -122,7 +122,7 @@ class ExampleInstrumentedTest {
         assert(cursor.moveToNext())
         val provaBD = Provas.fromCursor(cursor)
 
-        assertEquals(prova1, provaBD)
+        assertEquals(prova2, provaBD)
 
         val cursorTodosProvas = tabelaProvas.consulta(
             TabelaProvas.CAMPOS,
@@ -130,7 +130,7 @@ class ExampleInstrumentedTest {
             null,
             null,
             null,
-            TabelaProvas.CAMPO_NOME
+            TabelaProvas.CAMPO_NOME_PROVA
         )
 
         assert(cursorTodosProvas.count > 1)
@@ -143,7 +143,7 @@ class ExampleInstrumentedTest {
         val percurso = Percurso("Mini Trail", 75)
         inserePercursos(bd, percurso)
 
-        percurso.nome = "Mega Trail"
+        percurso.nomePercurso = "Mega Trail"
         val registoAlterado = TabelaPercursos(bd).altera(percurso.toContentValues(), "${BaseColumns._ID}=?", arrayOf(percurso.id.toString()),)
 
         assertEquals(1, registoAlterado)
@@ -163,10 +163,10 @@ class ExampleInstrumentedTest {
         insereProva(bd, prova)
 
         prova.percursos = percurso2
-        prova.nome = "VII Trail Cidade de Estremoz"
+        prova.nomeProva = "VII Trail Cidade de Estremoz"
         prova.data = "21/05/2023"
 
-        val registosAlterados = TabelaProvas(bd).altera(prova.toContentValues(), "${BaseColumns._ID}=?", arrayOf(prova.id.toString()),)
+        val registosAlterados = TabelaProvas(bd).altera(prova.toContentValues(), "${BaseColumns._ID}=?", arrayOf(prova.idProva.toString()),)
 
         assertEquals(1, registosAlterados)
     }
@@ -193,15 +193,15 @@ class ExampleInstrumentedTest {
         val prova = Provas("7 Cidades Ultimate Trail", "São Miguel", "Trail", "20/05/2023", percurso)
         insereProva(bd, prova)
 
-        val registosEliminado = TabelaProvas(bd).elimina("${BaseColumns._ID}=?", arrayOf(prova.id.toString()),)
+        val registosEliminado = TabelaProvas(bd).elimina("${BaseColumns._ID}=?", arrayOf(prova.idProva.toString()),)
 
         assertEquals(1, registosEliminado)
 
     }
 
     private fun insereProva(bd: SQLiteDatabase, provas: Provas) {
-        provas.id = TabelaProvas(bd).insere(provas.toContentValues())
-        assertNotEquals(-1, provas.id)
+        provas.idProva = TabelaProvas(bd).insere(provas.toContentValues())
+        assertNotEquals(-1, provas.idProva)
     }
 
     private fun getWritableDatabase(): SQLiteDatabase {

@@ -7,7 +7,7 @@ import android.provider.BaseColumns
 
 class TabelaProvas(db: SQLiteDatabase) : TabelaBD(db, NOME_TABELA) {
     override fun cria() {
-        db.execSQL("CREATE TABLE $NOME_TABELA ($CHAVE_TABELA, $CAMPO_NOME TEXT NOT NULL, $CAMPO_LOCALIDADE TEXT NOT NULL, $CAMPO_TIPO TEXT NOT NULL, $CAMPO_DATA TEXT NOT NULL, $CAMPO_FK_PERCURSOS INTEGER NOT NULL, FOREIGN KEY ($CAMPO_FK_PERCURSOS) REFERENCES ${TabelaPercursos.NOME_TABELA}(${BaseColumns._ID}) ON DELETE RESTRICT)")
+        db.execSQL("CREATE TABLE $NOME_TABELA ($CHAVE_TABELA, $CAMPO_NOME_PROVA TEXT NOT NULL, $CAMPO_LOCALIDADE TEXT NOT NULL, $CAMPO_TIPO TEXT NOT NULL, $CAMPO_DATA TEXT NOT NULL, $CAMPO_FK_PERCURSOS INTEGER NOT NULL, FOREIGN KEY ($CAMPO_FK_PERCURSOS) REFERENCES ${TabelaPercursos.NOME_TABELA}(${BaseColumns._ID}) ON DELETE RESTRICT)")
     }
     override fun consulta(
         colunas: Array<String>,
@@ -27,16 +27,16 @@ class TabelaProvas(db: SQLiteDatabase) : TabelaBD(db, NOME_TABELA) {
         const val NOME_TABELA = "Provas"
 
         const val CAMPO_ID = "$NOME_TABELA.${BaseColumns._ID}"
-        const val CAMPO_NOME = "nome"
+        const val CAMPO_NOME_PROVA = "nome_prova"
         const val CAMPO_LOCALIDADE = "localidade"
         const val CAMPO_TIPO = "tipo"
         const val CAMPO_DATA = "data"
         const val CAMPO_FK_PERCURSOS = "id_Percursos"
-        const val CAMPO_NOME_PERCURSO = TabelaPercursos.CAMPO_NOME
+        const val CAMPO_NOME_PERCURSO = TabelaPercursos.CAMPO_NOME_PERCURSO
         const val CAMPO_DIST_PERCURSO = TabelaPercursos.CAMPO_DISTANCIA
 
         val CAMPOS = arrayOf(CAMPO_ID,
-            CAMPO_NOME,
+            CAMPO_NOME_PROVA,
             CAMPO_LOCALIDADE,
             CAMPO_TIPO,
             CAMPO_DATA,

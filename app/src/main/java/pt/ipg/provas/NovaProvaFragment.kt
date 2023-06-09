@@ -5,11 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import pt.ipg.provas.databinding.FragmentNovaPorvaBinding
+import pt.ipg.provas.databinding.FragmentNovaProvaBinding
 
 
 class NovaProvaFragment : Fragment() {
-    private var _binding: FragmentNovaPorvaBinding? = null
+    private var _binding: FragmentNovaProvaBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -20,7 +20,7 @@ class NovaProvaFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentNovaPorvaBinding.inflate(inflater, container, false)
+        _binding = FragmentNovaProvaBinding.inflate(inflater, container, false)
         return binding.root
 
     }
