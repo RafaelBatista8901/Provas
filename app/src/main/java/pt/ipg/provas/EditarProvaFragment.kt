@@ -1,6 +1,7 @@
 package pt.ipg.provas
 
 import android.database.Cursor
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -111,6 +112,7 @@ class EditarProvaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             return
         }
 
+        if(prova == null){
         val prova = Provas(
             nome,
             localidade,
@@ -118,7 +120,34 @@ class EditarProvaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             data,
             Percurso("?", "?", percursosId)
         )
+            insereProva(prova)
+        } else {
+            val prova = prova!!
+            prova.nomeProva = nome
+            prova.percursos = Percurso("?", "?", percursosId)
+            prova.localidade = localidade
+            prova.tipo = tipo
+            prova.data = data
 
+            alteraProva(prova)
+        }
+    }
+
+    private fun alteraProva(livro: Provas) {
+        val enderecoProva = Uri.withAppendedPath(ProvasContentProvider.ENDERECO_PROVAS, livro.idProva.toString())
+        val provasAlteradas = requireActivity().contentResolver.update(enderecoProva, livro.toContentValues(), null, null)
+
+        if (provasAlteradas == 1) {
+            Toast.makeText(requireContext(), R.string.prova_guardado_com_sucesso, Toast.LENGTH_LONG).show()
+            cancelar()
+        } else {
+            binding.editTextNome.error = getString(R.string.erro_guardar_prova)
+        }
+    }
+
+    private fun insereProva(
+        prova: Provas
+    ) {
         val id = requireActivity().contentResolver.insert(
             ProvasContentProvider.ENDERECO_PROVAS,
             prova.toContentValues()
