@@ -59,5 +59,8 @@
         <action
             android:id="@+id/action_eliminarProvaFragment_to_ListaProvasFragment"
             app:destination="@id/ListaProvasFragment" />
+        <argument
+            android:name="prova"
+            app:argType="pt.ipg.provas.Prova" />
     </fragment>
 </navigation>

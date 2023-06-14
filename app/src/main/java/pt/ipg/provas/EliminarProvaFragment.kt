@@ -36,7 +36,7 @@ class EliminarProvaFragment : Fragment() {
         activity.fragment = this
         activity.IdMenuAtual = R.menu.menu_eliminar
 
-        Prova = EliminarProvaFragmentArgs.fromBundle(requireArguments()).prova
+
 
         binding.textViewNome2Prova.text = Prova.nomeProva
         binding.textViewLocalidade2Prova.text = Prova.localidade
