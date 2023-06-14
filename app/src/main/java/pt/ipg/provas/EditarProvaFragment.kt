@@ -18,7 +18,7 @@ import pt.ipg.provas.databinding.FragmentNovaProvaBinding
 
 private const val ID_LOADER_PERCURSOS = 0
 
-class NovaProvaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
+class EditarProvaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     private var _binding: FragmentNovaProvaBinding? = null
 
     // This property is only valid between onCreateView and

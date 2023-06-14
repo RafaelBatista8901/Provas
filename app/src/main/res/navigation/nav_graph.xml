@@ -45,9 +45,9 @@
     </fragment>
     <fragment
         android:id="@+id/novaProvaFragment"
-        android:name="pt.ipg.provas.NovaProvaFragment"
+        android:name="pt.ipg.provas.EditarProvaFragment"
         android:label="@string/nova_prova_label"
-        tools:layout="@layout/fragment_nova_prova">
+        tools:layout="@layout/fragment_editar_prova">
         <action
             android:id="@+id/action_novaProvaFragment_to_ListaProvasFragment"
             app:destination="@id/ListaProvasFragment" />

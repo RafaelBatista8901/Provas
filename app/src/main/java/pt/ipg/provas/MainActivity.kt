@@ -1,7 +1,6 @@
 package pt.ipg.provas
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.navigation.findNavController
@@ -12,7 +11,6 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import pt.ipg.provas.databinding.ActivityMainBinding
-import pt.ipg.provas.databinding.FragmentListaProvasBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -62,7 +60,8 @@ class MainActivity : AppCompatActivity() {
 
         val opcaoProcessada = when (fragment) {
             is ListaProvasFragment -> (fragment as ListaProvasFragment).processaOpcaoMenu(item)
-            is NovaProvaFragment -> (fragment as NovaProvaFragment).processaOpcaoMenu(item)
+            is EditarProvaFragment -> (fragment as EditarProvaFragment).processaOpcaoMenu(item)
+            is EliminarProvaFragment -> (fragment as EliminarProvaFragment).processaOpcaoMenu(item)
             else -> when (item.itemId){
                 R.id.action_settings -> true
                 else -> false
