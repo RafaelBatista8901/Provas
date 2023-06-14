@@ -16,8 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="text"
-            android:text="Name" />
+            android:hint="@string/nome"
+            android:inputType="text" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -28,8 +28,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="text"
-                android:text="Localidade" />
+                android:hint="@string/localidade"
+                android:inputType="text" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -40,8 +40,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="text"
-                    android:text="Tipo" />
+                    android:hint="@string/tipo"
+                    android:inputType="text" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -53,8 +53,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
                         android:ems="10"
-                        android:inputType="text"
-                        android:text="Data" />
+                        android:hint="@string/data"
+                        android:inputType="text" />
 
                     <TextView
                         android:id="@+id/textViewPercurso"

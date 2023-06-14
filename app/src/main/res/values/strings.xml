@@ -68,4 +68,19 @@
     <string name="data_obrigatorio">Deve inserir uma data</string>
     <string name="erro_guardar_prova">Náo foi possivel guardar a prova</string>
     <string name="prova_guardado_com_sucesso">Prova guardada com sucesso</string>
+    <string name="nome">Nome</string>
+    <string name="localidade">Localidade</string>
+    <string name="tipo">Tipo</string>
+    <string name="data">Data</string>
+    <string name="percurso">Percurso</string>
+    <string name="trail_curto">Trail Curto</string>
+    <string name="_24_05_2023">24/05/2023</string>
+    <string name="data_prova">Data</string>
+    <string name="tipo_prova">Tipo</string>
+    <string name="trail">Trail</string>
+    <string name="localidade_prova">Localidade</string>
+    <string name="belmonte">Belmonte</string>
+    <string name="nome_prova">Nome</string>
+    <string name="provas_eliminadas_com_sucesso">Prova eliminada com sucesso</string>
+    <string name="erro_eliminar_livro">Erro ao eliminar a prova</string>
 </resources>

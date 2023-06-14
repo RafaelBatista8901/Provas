@@ -39,6 +39,9 @@
         <action
             android:id="@+id/action_ListaProvasFragment_to_novaProvaFragment"
             app:destination="@id/novaProvaFragment" />
+        <action
+            android:id="@+id/action_ListaProvasFragment_to_eliminarProvaFragment"
+            app:destination="@id/eliminarProvaFragment" />
     </fragment>
     <fragment
         android:id="@+id/novaProvaFragment"
@@ -47,6 +50,14 @@
         tools:layout="@layout/fragment_nova_prova">
         <action
             android:id="@+id/action_novaProvaFragment_to_ListaProvasFragment"
+            app:destination="@id/ListaProvasFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/eliminarProvaFragment"
+        android:name="pt.ipg.provas.EliminarProvaFragment"
+        android:label="EliminarProvaFragment" >
+        <action
+            android:id="@+id/action_eliminarProvaFragment_to_ListaProvasFragment"
             app:destination="@id/ListaProvasFragment" />
     </fragment>
 </navigation>
