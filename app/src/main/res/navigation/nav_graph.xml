@@ -37,27 +37,31 @@
             android:id="@+id/action_listaProvasFragment_to_MenuPrincipalFragment"
             app:destination="@id/MenuPrincipalFragment" />
         <action
-            android:id="@+id/action_ListaProvasFragment_to_novaProvaFragment"
-            app:destination="@id/novaProvaFragment" />
+            android:id="@+id/action_ListaProvasFragment_to_EditarProvaFragment"
+            app:destination="@id/EditarProvaFragment" />
         <action
-            android:id="@+id/action_ListaProvasFragment_to_eliminarProvaFragment"
-            app:destination="@id/eliminarProvaFragment" />
+            android:id="@+id/action_ListaProvasFragment_to_EliminarProvaFragment"
+            app:destination="@id/EliminarProvaFragment" />
     </fragment>
     <fragment
-        android:id="@+id/novaProvaFragment"
+        android:id="@+id/EditarProvaFragment"
         android:name="pt.ipg.provas.EditarProvaFragment"
         android:label="@string/nova_prova_label"
         tools:layout="@layout/fragment_editar_prova">
         <action
-            android:id="@+id/action_novaProvaFragment_to_ListaProvasFragment"
+            android:id="@+id/action_EditarProvaFragment_to_ListaProvasFragment"
             app:destination="@id/ListaProvasFragment" />
+        <argument
+            android:name="prova"
+            app:argType="pt.ipg.provas.Provas"
+            app:nullable="true"/>
     </fragment>
     <fragment
-        android:id="@+id/eliminarProvaFragment"
+        android:id="@+id/EliminarProvaFragment"
         android:name="pt.ipg.provas.EliminarProvaFragment"
         android:label="EliminarProvaFragment" >
         <action
-            android:id="@+id/action_eliminarProvaFragment_to_ListaProvasFragment"
+            android:id="@+id/action_EliminarProvaFragment_to_ListaProvasFragment"
             app:destination="@id/ListaProvasFragment" />
         <argument
             android:name="prova"

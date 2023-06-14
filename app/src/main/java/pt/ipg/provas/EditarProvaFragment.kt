@@ -13,13 +13,14 @@ import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
-import pt.ipg.provas.databinding.FragmentNovaProvaBinding
+import pt.ipg.provas.databinding.FragmentEditarProvaBinding
 
 
 private const val ID_LOADER_PERCURSOS = 0
 
 class EditarProvaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
-    private var _binding: FragmentNovaProvaBinding? = null
+    private  var prova : Provas?=null
+    private var _binding: FragmentEditarProvaBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -30,7 +31,7 @@ class EditarProvaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentNovaProvaBinding.inflate(inflater, container, false)
+        _binding = FragmentEditarProvaBinding.inflate(inflater, container, false)
         return binding.root
 
     }
@@ -44,6 +45,16 @@ class EditarProvaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         val activity = activity as MainActivity
         activity.fragment = this
         activity.IdMenuAtual = R.menu.menu_guardar_cancelar
+        val prova = EliminarProvaFragmentArgs.fromBundle(requireArguments()).prova
+
+        if (prova != null) {
+            binding.editTextNome.setText(prova.nome)
+            binding.editTextLocalidade.setText(prova.localidade)
+            binding.editTextTipo.setText(prova.tipo)
+            binding.editTextData.setText(prova.data)
+        }
+
+        this.prova = prova
         }
 
     override fun onDestroyView() {
@@ -66,7 +77,7 @@ class EditarProvaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     }
 
     private fun cancelar() {
-        findNavController().navigate(R.id.action_novaProvaFragment_to_ListaProvasFragment)
+        findNavController().navigate(R.id.action_EditarProvaFragment_to_ListaProvasFragment)
     }
 
     private fun guardar() {

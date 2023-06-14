@@ -102,14 +102,17 @@ class ListaProvasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
     }
 
     private fun eliminarProvas() {
-        TODO("Not yet implemented")
+        val acao = ListaProvasFragmentDirections.actionListaProvasFragmentToEliminarProvaFragment(ProvaSelecionada!!)
+        findNavController().navigate(acao)
     }
 
     private fun editarProvas() {
-        TODO("Not yet implemented")
+        val acao = ListaProvasFragmentDirections.actionListaProvasFragmentToEditarProvaFragment(ProvaSelecionada!!)
+        findNavController().navigate(acao)
     }
 
     private fun adicionaProvas() {
-        findNavController().navigate(R.id.action_ListaProvasFragment_to_novaProvaFragment)
+        val acao = ListaProvasFragmentDirections.actionListaProvasFragmentToEditarProvaFragment(null)
+        findNavController().navigate(acao)
     }
 }

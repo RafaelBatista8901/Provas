@@ -36,7 +36,7 @@ class EliminarProvaFragment : Fragment() {
         activity.fragment = this
         activity.IdMenuAtual = R.menu.menu_eliminar
 
-        prova = EliminarProvaFragment.fromBundle(requireArguments()).prova
+        prova = EliminarProvaFragmentArgs.fromBundle(requireArguments()).prova
 
         binding.textViewNome2Prova.text = prova.nomeProva
         binding.textViewLocalidade2Prova.text = prova.localidade
@@ -65,7 +65,7 @@ class EliminarProvaFragment : Fragment() {
     }
 
     private fun voltaListaProvas() {
-        findNavController().navigate(R.id.action_eliminarProvaFragment_to_ListaProvasFragment)
+        findNavController().navigate(R.id.action_EliminarProvaFragment_to_ListaProvasFragment)
     }
 
     private fun eliminar() {
