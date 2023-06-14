@@ -3,6 +3,7 @@ package pt.ipg.provas
 import android.content.ContentValues
 import android.database.Cursor
 import android.provider.BaseColumns
+import java.io.Serializable
 
 data class Provas(
     var nomeProva: String,
@@ -11,7 +12,7 @@ data class Provas(
     var data: String,
     var percursos: Percurso,
     var idProva: Long = -1
-) {
+) : Serializable {
     fun toContentValues(): ContentValues {
         val valores = ContentValues()
 
