@@ -12,7 +12,7 @@ data class Provas(
     var data: String,
     var percursos: Percurso,
     var idProva: Long = -1
-) : Serializable {
+) :Serializable {
     fun toContentValues(): ContentValues {
         val valores = ContentValues()
 

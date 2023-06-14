@@ -12,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import pt.ipg.provas.databinding.FragmentEliminarProvaBinding
 class EliminarProvaFragment : Fragment() {
-    private lateinit var Prova: Provas
+    private lateinit var prova: Provas
     private var _binding: FragmentEliminarProvaBinding? = null
 
     // This property is only valid between onCreateView and
@@ -36,13 +36,13 @@ class EliminarProvaFragment : Fragment() {
         activity.fragment = this
         activity.IdMenuAtual = R.menu.menu_eliminar
 
+        prova = EliminarProvaFragment.fromBundle(requireArguments()).prova
 
-
-        binding.textViewNome2Prova.text = Prova.nomeProva
-        binding.textViewLocalidade2Prova.text = Prova.localidade
-        binding.textViewTipo2Prova.text = Prova.tipo
-        binding.textViewData2Prova.text = Prova.data
-        binding.textViewPercurso2Prova.text = Prova.percursos.nomePercurso
+        binding.textViewNome2Prova.text = prova.nomeProva
+        binding.textViewLocalidade2Prova.text = prova.localidade
+        binding.textViewTipo2Prova.text = prova.tipo
+        binding.textViewData2Prova.text = prova.data
+        binding.textViewPercurso2Prova.text = prova.percursos.nomePercurso
     }
 
     override fun onDestroyView() {
@@ -69,7 +69,7 @@ class EliminarProvaFragment : Fragment() {
     }
 
     private fun eliminar() {
-        val enderecoProva = Uri.withAppendedPath(ProvasContentProvider.ENDERECO_PROVAS, Prova.idProva.toString())
+        val enderecoProva = Uri.withAppendedPath(ProvasContentProvider.ENDERECO_PROVAS, prova.idProva.toString())
         val numProvasEliminadas = requireActivity().contentResolver.delete(enderecoProva, null, null)
 
         if (numProvasEliminadas == 1) {
