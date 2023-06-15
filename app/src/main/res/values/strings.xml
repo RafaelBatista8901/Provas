@@ -83,4 +83,6 @@
     <string name="nome_prova">Nome</string>
     <string name="provas_eliminadas_com_sucesso">Prova eliminada com sucesso</string>
     <string name="erro_eliminar_livro">Erro ao eliminar a prova</string>
+    <string name="percurso2">Percurso</string>
+    <string name="erro_eliminar_prova">Erro ao eliminar a prova</string>
 </resources>

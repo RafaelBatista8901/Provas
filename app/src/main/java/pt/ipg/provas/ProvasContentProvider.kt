@@ -28,10 +28,8 @@ class ProvasContentProvider : ContentProvider() {
         val endereco = uriMatcher().match(uri)
 
         val tabela = when (endereco){
-            URI_PERCURSOS -> TabelaPercursos(bd)
-            URI_PERCURSO_ID -> TabelaProvas(bd)
-            URI_PROVAS -> TabelaProvas(bd)
-            URI_PROVA_ID -> TabelaProvas(bd)
+            URI_PERCURSOS, URI_PERCURSO_ID -> TabelaPercursos(bd)
+            URI_PROVAS, URI_PROVA_ID -> TabelaProvas(bd)
             else -> null
         }
 
@@ -126,9 +124,9 @@ class ProvasContentProvider : ContentProvider() {
 
         fun uriMatcher() = UriMatcher(UriMatcher.NO_MATCH).apply {
             addURI(AUTORIDADE, PERCURSO, URI_PERCURSOS)
-            addURI(AUTORIDADE, "$PERCURSO", URI_PERCURSOS)
+            addURI(AUTORIDADE, "$PERCURSO/#", URI_PERCURSO_ID)
             addURI(AUTORIDADE, PROVAS, URI_PROVAS)
-            addURI(AUTORIDADE, "$PROVAS", URI_PROVAS)
+            addURI(AUTORIDADE, "$PROVAS/#", URI_PROVA_ID)
         }
     }
 }

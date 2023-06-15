@@ -9,10 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.snackbar.Snackbar
 import pt.ipg.provas.databinding.FragmentEliminarProvaBinding
 class EliminarProvaFragment : Fragment() {
-    private lateinit var prova: Provas
+    private lateinit var provas: Provas
     private var _binding: FragmentEliminarProvaBinding? = null
 
     // This property is only valid between onCreateView and
@@ -36,13 +35,13 @@ class EliminarProvaFragment : Fragment() {
         activity.fragment = this
         activity.IdMenuAtual = R.menu.menu_eliminar
 
-        prova = EliminarProvaFragmentArgs.fromBundle(requireArguments()).prova
+        provas = EliminarProvaFragmentArgs.fromBundle(requireArguments()).prova
 
-        binding.textViewNome2Prova.text = prova.nomeProva
-        binding.textViewLocalidade2Prova.text = prova.localidade
-        binding.textViewTipo2Prova.text = prova.tipo
-        binding.textViewData2Prova.text = prova.data
-        binding.textViewPercurso2Prova.text = prova.percursos.nomePercurso
+        binding.textViewNome2Prova.text = provas.nomeProva
+        binding.textViewLocalidade2Prova.text = provas.localidade
+        binding.textViewTipo2Prova.text = provas.tipo
+        binding.textViewData2Prova.text = provas.data
+        binding.textViewPercurso2Prova.text = provas.percursos.nomePercurso
     }
 
     override fun onDestroyView() {
@@ -52,12 +51,12 @@ class EliminarProvaFragment : Fragment() {
 
     fun processaOpcaoMenu(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.action_eliminar -> {
-                eliminar()
-                true
-            }
             R.id.action_cancelar -> {
                 voltaListaProvas()
+                true
+            }
+            R.id.action_eliminar -> {
+                eliminar()
                 true
             }
             else -> false
@@ -69,14 +68,14 @@ class EliminarProvaFragment : Fragment() {
     }
 
     private fun eliminar() {
-        val enderecoProva = Uri.withAppendedPath(ProvasContentProvider.ENDERECO_PROVAS, prova.idProva.toString())
+        val enderecoProva = Uri.withAppendedPath(ProvasContentProvider.ENDERECO_PROVAS, provas.idProva.toString())
         val numProvasEliminadas = requireActivity().contentResolver.delete(enderecoProva, null, null)
 
         if (numProvasEliminadas == 1) {
             Toast.makeText(requireContext(), getString(R.string.provas_eliminadas_com_sucesso), Toast.LENGTH_LONG).show()
             voltaListaProvas()
         } else {
-            Snackbar.make(binding.textViewNome2Prova, getString(R.string.erro_eliminar_livro), Snackbar.LENGTH_INDEFINITE)
+            Toast.makeText(requireContext(), getString(R.string.erro_eliminar_prova), Toast.LENGTH_LONG).show()
         }
     }
 }

@@ -1,5 +1,6 @@
 package pt.ipg.provas
 
+import android.annotation.SuppressLint
 import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
@@ -20,7 +21,7 @@ import pt.ipg.provas.databinding.FragmentEditarProvaBinding
 private const val ID_LOADER_PERCURSOS = 0
 
 class EditarProvaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
-    private  var prova : Provas?=null
+    private  var provas : Provas?=null
     private var _binding: FragmentEditarProvaBinding? = null
 
     // This property is only valid between onCreateView and
@@ -46,16 +47,17 @@ class EditarProvaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         val activity = activity as MainActivity
         activity.fragment = this
         activity.IdMenuAtual = R.menu.menu_guardar_cancelar
-        val prova = EliminarProvaFragmentArgs.fromBundle(requireArguments()).prova
+
+        val prova = EditarProvaFragmentArgs.fromBundle(requireArguments()).prova
 
         if (prova != null) {
-            binding.editTextNome.setText(prova.nome)
+            binding.editTextNome.setText(prova.nomeProva)
             binding.editTextLocalidade.setText(prova.localidade)
             binding.editTextTipo.setText(prova.tipo)
             binding.editTextData.setText(prova.data)
         }
 
-        this.prova = prova
+        this.provas = prova
         }
 
     override fun onDestroyView() {
@@ -81,6 +83,7 @@ class EditarProvaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         findNavController().navigate(R.id.action_EditarProvaFragment_to_ListaProvasFragment)
     }
 
+    @SuppressLint("SuspiciousIndentation")
     private fun guardar() {
         val nome = binding.editTextNome.text.toString()
         if (nome.isBlank()){
@@ -112,7 +115,7 @@ class EditarProvaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             return
         }
 
-        if(prova == null){
+        if(provas == null){
         val prova = Provas(
             nome,
             localidade,
@@ -122,7 +125,7 @@ class EditarProvaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         )
             insereProva(prova)
         } else {
-            val prova = prova!!
+            val prova = provas!!
             prova.nomeProva = nome
             prova.percursos = Percurso("?", "?", percursosId)
             prova.localidade = localidade
@@ -133,9 +136,9 @@ class EditarProvaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         }
     }
 
-    private fun alteraProva(livro: Provas) {
-        val enderecoProva = Uri.withAppendedPath(ProvasContentProvider.ENDERECO_PROVAS, livro.idProva.toString())
-        val provasAlteradas = requireActivity().contentResolver.update(enderecoProva, livro.toContentValues(), null, null)
+    private fun alteraProva(prova: Provas) {
+        val enderecoProva = Uri.withAppendedPath(ProvasContentProvider.ENDERECO_PROVAS, prova.idProva.toString())
+        val provasAlteradas = requireActivity().contentResolver.update(enderecoProva, prova.toContentValues(), null, null)
 
         if (provasAlteradas == 1) {
             Toast.makeText(requireContext(), R.string.prova_guardado_com_sucesso, Toast.LENGTH_LONG).show()
@@ -158,7 +161,7 @@ class EditarProvaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             return
         }
 
-        Toast.makeText(requireContext(), getString(R.string.prova_guardado_com_sucesso), Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), getString(R.string.prova_guardado_com_sucesso), Toast.LENGTH_LONG).show()
         cancelar()
 
     }
@@ -172,7 +175,9 @@ class EditarProvaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     }
 
     override fun onLoaderReset(loader: Loader<Cursor>) {
-       binding.spinnerPercursos.adapter = null
+        if (_binding != null) {
+            binding.spinnerPercursos.adapter = null
+        }
     }
 
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
@@ -189,5 +194,20 @@ class EditarProvaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             intArrayOf(android.R.id.text1),
             0
         )
+        mostraPercursoSelecionadaSpinner()
+    }
+
+    private fun mostraPercursoSelecionadaSpinner() {
+        if (provas == null) return
+
+        val idPercurso = provas!!.percursos.id
+
+        val ultimoPercurso = binding.spinnerPercursos.count - 1
+        for (i in 0..ultimoPercurso) {
+            if (idPercurso == binding.spinnerPercursos.getItemIdAtPosition(i)) {
+                binding.spinnerPercursos.setSelection(i)
+                return
+            }
+        }
     }
 }

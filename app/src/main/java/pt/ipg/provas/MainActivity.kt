@@ -62,11 +62,8 @@ class MainActivity : AppCompatActivity() {
             is ListaProvasFragment -> (fragment as ListaProvasFragment).processaOpcaoMenu(item)
             is EditarProvaFragment -> (fragment as EditarProvaFragment).processaOpcaoMenu(item)
             is EliminarProvaFragment -> (fragment as EliminarProvaFragment).processaOpcaoMenu(item)
-            else -> when (item.itemId){
-                R.id.action_settings -> true
-                else -> false
+            else -> false
             }
-        }
         return if (opcaoProcessada) {true} else { super.onOptionsItemSelected(item) }
     }
 

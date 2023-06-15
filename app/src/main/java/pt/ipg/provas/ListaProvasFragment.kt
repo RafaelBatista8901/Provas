@@ -33,9 +33,6 @@ class ListaProvasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
             activity.mostrarOpcaoMenu(R.id.action_editar, mostrarEliminarAlterar)
             activity.mostrarOpcaoMenu(R.id.action_eliminar, mostrarEliminarAlterar)
         }
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
