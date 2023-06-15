@@ -85,4 +85,5 @@
     <string name="erro_eliminar_livro">Erro ao eliminar a prova</string>
     <string name="percurso2">Percurso</string>
     <string name="erro_eliminar_prova">Erro ao eliminar a prova</string>
+    <string name="atualizar_titulo">Editar Prova</string>
 </resources>

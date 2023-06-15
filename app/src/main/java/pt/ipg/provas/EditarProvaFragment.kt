@@ -51,10 +51,13 @@ class EditarProvaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         val prova = EditarProvaFragmentArgs.fromBundle(requireArguments()).prova
 
         if (prova != null) {
+            activity.atualizarTitulo(R.string.atualizar_titulo)
             binding.editTextNome.setText(prova.nomeProva)
             binding.editTextLocalidade.setText(prova.localidade)
             binding.editTextTipo.setText(prova.tipo)
             binding.editTextData.setText(prova.data)
+        }else{
+            activity.atualizarTitulo(R.string.nova_prova_label)
         }
 
         this.provas = prova
